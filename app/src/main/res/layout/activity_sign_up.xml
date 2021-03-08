@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="user"
+            name="signUpViewModel"
             type="com.example.applicationcuatoi.view.signup.SignUpViewModel" />
     </data>
 
@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            app:error="@{signUpViewModel.errorEmail}"
             app:hintEnabled="true">
 
             <EditText
@@ -33,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/numans"
                 android:hint="Your email"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
+                android:text="@={signUpViewModel.email}"
                 android:textAllCaps="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            app:error="@{signUpViewModel.errorPassword}"
             app:hintEnabled="true"
             app:passwordToggleEnabled="true">
 
@@ -50,7 +53,7 @@
                 android:fontFamily="@font/numans"
                 android:hint="Your password"
                 android:inputType="textPassword"
-               />
+                android:text="@={signUpViewModel.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +68,7 @@
                 android:fontFamily="@font/numans"
                 android:hint="Your address"
                 android:inputType="text"
-               />
+                android:text="@={signUpViewModel.address}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -80,16 +83,17 @@
                 android:fontFamily="@font/numans"
                 android:hint="Your phone number"
                 android:inputType="number"
-                android:maxLength="10" />
+                android:maxLength="10"
+                android:text="@={signUpViewModel.phonenumber}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:background="@drawable/layout_button_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/layout_button_default"
             android:fontFamily="@font/numans"
-            android:onClick="@{()-> user.onClickSignUp()}"
+            android:onClick="@{()-> signUpViewModel.onClickSignUp()}"
             android:text="Sign Up"
             android:textAllCaps="false" />
     </LinearLayout>

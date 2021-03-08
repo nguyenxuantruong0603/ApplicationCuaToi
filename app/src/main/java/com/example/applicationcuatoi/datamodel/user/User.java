@@ -1,5 +1,7 @@
 package com.example.applicationcuatoi.datamodel.user;
 
+import android.util.Patterns;
+
 public class User {
     private String email;
     private String password;
@@ -8,22 +10,32 @@ public class User {
     private int phoneNumber;
     private String sex;
 
-    //Class DataModel User thiết kế theo Builder Pattern
-
+    //Class DataModel User Design according Builder Pattern
     public User(final UserBuilder userBuilder) {
+        this.email = userBuilder.email;
+        this.password = userBuilder.password;
+        this.age = userBuilder.age;
+        this.address = userBuilder.address;
+        this.phoneNumber = userBuilder.phoneNumber;
+        this.sex = userBuilder.sex;
+    }
+
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
-        this.age = age;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.sex = sex;
     }
 
     public String getEmail() {
+        if (email == null) {
+            return "";
+        }
         return email;
     }
 
     public String getPassword() {
+        if (password == null) {
+            return "";
+        }
         return password;
     }
 
@@ -32,6 +44,9 @@ public class User {
     }
 
     public String getAddress() {
+        if (address == null) {
+            return "";
+        }
         return address;
     }
 
@@ -40,6 +55,9 @@ public class User {
     }
 
     public String getSex() {
+        if (sex == null) {
+            return "";
+        }
         return sex;
     }
 
@@ -86,5 +104,12 @@ public class User {
         }
     }
 
+    public boolean isEmailValid() {
+        return Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches();
+    }
+
+    public boolean isPasswordValid() {
+        return getPassword().length() > 6;
+    }
 
 }

@@ -5,87 +5,49 @@ import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.applicationcuatoi.BR;
+import com.example.applicationcuatoi.datamodel.user.User;
 
-public class SignUpViewModel extends BaseObservable {
-    private String email;
-    private String password;
-    private String address;
-    private int age;
-    private int phonenumber;
-    private String sex;
+public class SignUpViewModel extends ViewModel {
+
     private Context context;
+    private MutableLiveData<User> userMutableLiveData;
+
+    public MutableLiveData<String> email = new MutableLiveData<>();
+    public MutableLiveData<String> password = new MutableLiveData<>();
+    public MutableLiveData<String> address = new MutableLiveData<>();
+    public MutableLiveData<String> phonenumber = new MutableLiveData<>();
+
+    public MutableLiveData<String> errorPassword = new MutableLiveData<>();
+    public MutableLiveData<String> errorEmail = new MutableLiveData<>();
+
 
     public SignUpViewModel(Context context) {
         this.context = context;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-        notifyPropertyChanged(BR.email);
+    public MutableLiveData<User> getUserMutableLiveData() {
+        if (userMutableLiveData == null) {
+            userMutableLiveData = new MutableLiveData<>();
+        }
+        return userMutableLiveData;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-        notifyPropertyChanged(BR.password);
-
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-        notifyPropertyChanged(BR.address);
-
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-        notifyPropertyChanged(BR.age);
-
-    }
-
-    public void setPhonenumber(int phonenumber) {
-        this.phonenumber = phonenumber;
-        notifyPropertyChanged(BR.phonenumber);
-
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-        notifyPropertyChanged(BR.sex);
-
-    }
-
-    @Bindable
-    public String getEmail() {
-        return email;
-    }
-    @Bindable
-    public String getPassword() {
-        return password;
-    }
-    @Bindable
-    public String getAddress() {
-        return address;
-    }
-    @Bindable
-    public int getAge() {
-        return age;
-    }
-    @Bindable
-    public int getPhonenumber() {
-        return phonenumber;
-    }
-    @Bindable
-    public String getSex() {
-        return sex;
-    }
-
-
 
     public void onClickSignUp() {
-        Toast.makeText(context, "Chán", Toast.LENGTH_SHORT).show();
+        User user = new User(email.getValue(), password.getValue());
+
+        if (!user.isEmailValid() || !user.isPasswordValid()) {
+            errorEmail.setValue("Enter a valid email address");
+            errorPassword.setValue("Password Length should be greater than 6");
+        } else {
+            errorEmail.setValue(null);
+            errorPassword.setValue(null);
+            Toast.makeText(context, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }
