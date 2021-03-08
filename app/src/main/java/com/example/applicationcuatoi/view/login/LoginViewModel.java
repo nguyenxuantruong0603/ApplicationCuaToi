@@ -4,16 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.applicationcuatoi.datamodel.TheMovie;
-import com.example.applicationcuatoi.view.HomeActivity;
-
-import java.util.List;
+import com.example.applicationcuatoi.view.home.HomeActivity;
+import com.example.applicationcuatoi.view.signup.SignUpActivity;
 
 public class LoginViewModel extends ViewModel {
 
+    private String username;
+    private String password;
     private Context context;
 
     public LoginViewModel(Context context) {
@@ -22,6 +21,7 @@ public class LoginViewModel extends ViewModel {
 
     // xử lý sự kiện khi click đăng nhập
     public void onClickLogin(String username, String password) {
+
         if (username.equals("Admin") && password.equals("Admin")) {
             Toast.makeText(context, "Xin Chào Admin !", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, HomeActivity.class);
@@ -33,8 +33,12 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    public void clickForgotPassword(){
-        Toast.makeText(context, "ngu thì chết hỏi hỏi cái quần què !", Toast.LENGTH_SHORT).show();
+    public void clickForgotPassword() {
+        Toast.makeText(context, "ngu thì chết bấm bấm caiconcac !", Toast.LENGTH_SHORT).show();
     }
 
+    public void onClickSignUp() {
+        Intent intent = new Intent(context, SignUpActivity.class);
+        context.startActivity(intent);
+    }
 }

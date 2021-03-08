@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ApplicationCuaToi">
-        <activity android:name=".view.HomeActivity"></activity>
-        <activity android:name=".view.login.LoginActivity"></activity>
+        <activity android:name=".view.signup.SignUpActivity"/>
+        <activity android:name=".view.home.HomeActivity" />
+        <activity android:name=".view.login.LoginActivity" />
         <activity
             android:name=".view.SplashActivity"
             android:theme="@style/SplashTheme">

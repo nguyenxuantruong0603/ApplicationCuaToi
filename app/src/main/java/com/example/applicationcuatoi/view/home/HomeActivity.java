@@ -1,4 +1,4 @@
-package com.example.applicationcuatoi.view;
+package com.example.applicationcuatoi.view.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 

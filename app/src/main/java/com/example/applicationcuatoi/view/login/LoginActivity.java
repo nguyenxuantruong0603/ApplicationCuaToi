@@ -2,10 +2,7 @@ package com.example.applicationcuatoi.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-
 import android.os.Bundle;
-import android.view.View;
-
 import com.example.applicationcuatoi.R;
 import com.example.applicationcuatoi.databinding.ActivityLoginBinding;
 
@@ -27,5 +24,6 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.tvForgotPassword.setOnClickListener(v -> loginViewModel.clickForgotPassword());
 
+        binding.tvSignUp.setOnClickListener(v -> loginViewModel.onClickSignUp());
     }
 }

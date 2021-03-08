@@ -1,4 +1,4 @@
-package com.example.applicationcuatoi.datamodel;
+package com.example.applicationcuatoi.datamodel.movie;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
