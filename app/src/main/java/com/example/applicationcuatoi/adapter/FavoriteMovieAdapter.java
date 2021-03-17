@@ -1,7 +1,6 @@
 package com.example.applicationcuatoi.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.applicationcuatoi.R;
 import com.example.applicationcuatoi.datamodel.movie.TheMovie;
+import com.example.applicationcuatoi.utils.ActionBottomDialogFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -40,7 +42,16 @@ public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdap
         holder.tvTitle.setText(theMovie.getTitle());
         Picasso.with(context).load("https://image.tmdb.org/t/p/w500"+theMovie.getBackdropPath()).into(holder.imgAvatar);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                ActionBottomDialogFragment addPhotoBottomDialogFragment = ActionBottomDialogFragment.newInstance();
+                addPhotoBottomDialogFragment.show(((AppCompatActivity) context).getSupportFragmentManager(),
+                        ActionBottomDialogFragment.TAG);
+
+            }
+        });
     }
 
     @Override
