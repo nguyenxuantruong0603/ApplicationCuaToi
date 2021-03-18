@@ -21,16 +21,12 @@ public class InformationFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        informationViewModel =
-                new ViewModelProvider(this).get(InformationViewModel.class);
         View root = inflater.inflate(R.layout.fragment_information, container, false);
         final TextView textView = root.findViewById(R.id.text_notifications);
-        informationViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        informationViewModel = new ViewModelProvider(this).get(InformationViewModel.class);
+
+        informationViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 }
