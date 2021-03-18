@@ -1,31 +1,23 @@
-package com.example.applicationcuatoi.view.ui.favoritemovie;
+package com.example.applicationcuatoi.view.ui.popularmovie;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.applicationcuatoi.R;
 import com.example.applicationcuatoi.adapter.FavoriteMovieAdapter;
-import com.example.applicationcuatoi.datamodel.movie.TheMovie;
-
-import java.util.List;
 
 
-public class FavoriteMovieFragment extends Fragment {
+public class PopularMovieFragment extends Fragment {
 
-    private FavoriteMovieViewModel favoriteMovieViewModel;
+    private PopularMovieViewModel popularMovieViewModel;
     private FavoriteMovieAdapter favoriteMovieAdapter;
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -36,9 +28,9 @@ public class FavoriteMovieFragment extends Fragment {
 
         RecyclerView rcFavoriteMovie = view.findViewById(R.id.rcFavoriteMovie);
 
-        favoriteMovieViewModel = new ViewModelProvider(this).get(FavoriteMovieViewModel.class);
+        popularMovieViewModel = new ViewModelProvider(this).get(PopularMovieViewModel.class);
 
-        favoriteMovieViewModel.getListMutableLiveData().observe(this, theMovies -> {
+        popularMovieViewModel.getListMutableLiveData().observe(this, theMovies -> {
 
             favoriteMovieAdapter = new FavoriteMovieAdapter(theMovies,getContext());
 
@@ -46,7 +38,7 @@ public class FavoriteMovieFragment extends Fragment {
 
         });
 
-        favoriteMovieViewModel.getTheMovieApi();
+        popularMovieViewModel.getTheMovieApi();
 
         return view;
     }

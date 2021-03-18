@@ -7,10 +7,15 @@
 
     <fragment
         android:id="@+id/favoriteMovie"
-        android:name="com.example.applicationcuatoi.view.ui.favoritemovie.FavoriteMovieFragment"
+        android:name="com.example.applicationcuatoi.view.ui.popularmovie.PopularMovieFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_favorite_movie" />
 
+    <fragment
+        android:id="@+id/topRated"
+        android:name="com.example.applicationcuatoi.view.ui.toprated.TopRatedFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_favorite_movie" />
 
     <fragment
         android:id="@+id/information"

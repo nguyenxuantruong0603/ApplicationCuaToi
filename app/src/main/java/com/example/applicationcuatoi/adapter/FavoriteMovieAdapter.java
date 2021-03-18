@@ -40,17 +40,12 @@ public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdap
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         TheMovie theMovie = theMovieList.get(position);
         holder.tvTitle.setText(theMovie.getTitle());
-        Picasso.with(context).load("https://image.tmdb.org/t/p/w500"+theMovie.getBackdropPath()).into(holder.imgAvatar);
+        Picasso.with(context).load("https://image.tmdb.org/t/p/w500" + theMovie.getBackdropPath()).into(holder.imgAvatar);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ActionBottomDialogFragment addPhotoBottomDialogFragment = ActionBottomDialogFragment.newInstance();
-                addPhotoBottomDialogFragment.show(((AppCompatActivity) context).getSupportFragmentManager(),
-                        ActionBottomDialogFragment.TAG);
-
-            }
+        holder.itemView.setOnClickListener(v -> {
+            ActionBottomDialogFragment addPhotoBottomDialogFragment = ActionBottomDialogFragment.newInstance(theMovie);
+            addPhotoBottomDialogFragment.show(((AppCompatActivity) context).getSupportFragmentManager(),
+                    ActionBottomDialogFragment.TAG);
         });
     }
 

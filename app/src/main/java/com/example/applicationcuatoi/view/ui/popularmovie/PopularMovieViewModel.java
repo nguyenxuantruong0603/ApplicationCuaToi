@@ -1,12 +1,11 @@
-package com.example.applicationcuatoi.view.ui.favoritemovie;
+package com.example.applicationcuatoi.view.ui.popularmovie;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.applicationcuatoi.apicalling.MovieApiService;
+import com.example.applicationcuatoi.apicalling.PopularApiService;
 import com.example.applicationcuatoi.apicalling.RetrofitCallMovie;
 import com.example.applicationcuatoi.datamodel.movie.ResultTheMovie;
 import com.example.applicationcuatoi.datamodel.movie.TheMovie;
@@ -18,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class FavoriteMovieViewModel extends ViewModel {
+public class PopularMovieViewModel extends ViewModel {
 
     private MutableLiveData<List<TheMovie>> listMutableLiveData;
 
@@ -34,7 +33,7 @@ public class FavoriteMovieViewModel extends ViewModel {
     }
 
     public void getTheMovieApi() {
-        MovieApiService callMovie = RetrofitCallMovie.getInstance().create(MovieApiService.class);
+        PopularApiService callMovie = RetrofitCallMovie.getInstance().create(PopularApiService.class);
         Call<ResultTheMovie> call = callMovie.getResult();
         call.enqueue(new Callback<ResultTheMovie>() {
             @Override

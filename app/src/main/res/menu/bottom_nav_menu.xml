@@ -4,11 +4,16 @@
     <item
         android:id="@+id/favoriteMovie"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Favorite Movie" />
+        android:title="Popular Movie" />
+
+    <item
+        android:id="@+id/topRated"
+        android:icon="@drawable/ic_star_rate"
+        android:title="Top Rated" />
 
     <item
         android:id="@+id/information"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_manage_accounts"
         android:title="Information" />
 
 </menu>
