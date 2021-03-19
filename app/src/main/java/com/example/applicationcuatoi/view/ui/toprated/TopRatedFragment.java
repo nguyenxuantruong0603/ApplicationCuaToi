@@ -13,13 +13,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.applicationcuatoi.R;
-import com.example.applicationcuatoi.adapter.FavoriteMovieAdapter;
+import com.example.applicationcuatoi.adapter.PopularAdapter;
+import com.example.applicationcuatoi.adapter.TopRatedAdapter;
 
 
 public class TopRatedFragment extends Fragment {
 
     private TopRatedViewModel topRatedViewModel;
-    private FavoriteMovieAdapter favoriteMovieAdapter;
+    private TopRatedAdapter topRatedAdapter;
 
     @SuppressLint("FragmentLiveDataObserve")
     @Nullable
@@ -34,8 +35,8 @@ public class TopRatedFragment extends Fragment {
         topRatedViewModel.getTopRatedApi();
 
         topRatedViewModel.getListMutableLiveData().observe(this, theMovies -> {
-            favoriteMovieAdapter = new FavoriteMovieAdapter(theMovies, getContext());
-            rcTopRated.setAdapter(favoriteMovieAdapter);
+            topRatedAdapter = new TopRatedAdapter(theMovies, getContext());
+            rcTopRated.setAdapter(topRatedAdapter);
         });
         return view;
 

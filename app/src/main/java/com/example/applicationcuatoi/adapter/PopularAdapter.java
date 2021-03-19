@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.applicationcuatoi.R;
@@ -19,12 +18,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdapter.Holder> {
+public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Holder> {
 
     private List<TheMovie> theMovieList;
     private Context context;
 
-    public FavoriteMovieAdapter(List<TheMovie> theMovieList, Context context) {
+    public PopularAdapter(List<TheMovie> theMovieList, Context context) {
         this.theMovieList = theMovieList;
         this.context = context;
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ApplicationCuaToi</string>
+    <string name="app_name">The Movie</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Top Popular</string>
     <string name="title_notifications">Information</string>
