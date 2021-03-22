@@ -40,7 +40,17 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.Holder
         TheMovie theMovie = theMovieList.get(position);
         holder.tvTitle.setText(theMovie.getTitle());
         Picasso.with(context).load("https://image.tmdb.org/t/p/w500" + theMovie.getBackdropPath()).into(holder.imgAvatar);
-        holder.itemView.setOnClickListener(v -> context.startActivity(new Intent(context, DetailMovieActivity.class)));
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context,DetailMovieActivity.class);
+            intent.putExtra("TITLE",theMovie.getTitle());
+            intent.putExtra("OVERVIEW",theMovie.getOverview());
+            intent.putExtra("DATE",theMovie.getReleaseDate());
+            intent.putExtra("VOTECOUNT",theMovie.getVoteCount());
+            intent.putExtra("VOTEAVERAGE",theMovie.getVoteAverage());
+            intent.putExtra("AVATAR",theMovie.getPosterPath());
+            context.startActivity(intent);
+
+        });
     }
 
     @Override
