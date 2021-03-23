@@ -1,16 +1,16 @@
 package com.example.applicationcuatoi.view.detailmovie;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.example.applicationcuatoi.R;
 import com.example.applicationcuatoi.databinding.ActivityDetailMovieBinding;
+import com.squareup.picasso.Picasso;
 
 public class DetailMovieActivity extends AppCompatActivity {
 
@@ -33,11 +33,11 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         binding.btnBuyCart.setOnClickListener(v -> Toast.makeText(DetailMovieActivity.this, "Buy Successfully", Toast.LENGTH_SHORT).show());
 
-        progressbarShowVote();
         initView();
-
+        progressbarShowVote();
     }
 
+    @SuppressLint("SetTextI18n")
     private void initView() {
         title = getIntent().getStringExtra("TITLE");
         overview = getIntent().getStringExtra("OVERVIEW");
@@ -46,28 +46,34 @@ public class DetailMovieActivity extends AppCompatActivity {
         voteaverage = getIntent().getDoubleExtra("VOTEAVERAGE", 0.0);
         avatar = getIntent().getStringExtra("AVATAR");
 
+        convert = String.valueOf(voteaverage).replace(".", "");
+
         binding.tvDetailTitle.setText(title);
         binding.tvDetailOverView.setText(overview);
         binding.tvDetailDate.setText(date);
         binding.tvDetailVote.setText(votecount + "");
+        Picasso.with(this).load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imgDetailAvatar);
 
-        convert = String.valueOf(voteaverage).replace(".", "");
     }
 
+    @SuppressLint("SetTextI18n")
     private void progressbarShowVote() {
-        new Thread(() -> {
-            while (pStatus <= Integer.parseInt(convert)) {
-                handler.post(() -> {
-                    binding.progressBar.setProgress(pStatus);
-                    binding.txtProgress.setText(voteaverage + "");
-                });
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+
+        if (convert != null) {
+            new Thread(() -> {
+                while (pStatus <= Integer.parseInt(convert)) {
+                    handler.post(() -> {
+                        binding.progressBar.setProgress(pStatus);
+                        binding.txtProgress.setText(voteaverage + "");
+                    });
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    pStatus++;
                 }
-                pStatus++;
-            }
-        }).start();
+            }).start();
+        }
     }
 }

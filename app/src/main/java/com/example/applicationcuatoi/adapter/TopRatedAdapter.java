@@ -2,6 +2,7 @@ package com.example.applicationcuatoi.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,6 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.Holder
             intent.putExtra("VOTEAVERAGE",theMovie.getVoteAverage());
             intent.putExtra("AVATAR",theMovie.getPosterPath());
             context.startActivity(intent);
-
         });
     }
 
