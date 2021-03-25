@@ -2,20 +2,33 @@ package com.example.applicationcuatoi.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+
+import android.content.Intent;
+
+import com.example.applicationcuatoi.view.home.HomeActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.applicationcuatoi.R;
 import com.example.applicationcuatoi.databinding.ActivityLoginBinding;
 import com.example.applicationcuatoi.datamodel.user.User;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+
+import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
+    CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        loginFacebook();
 
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         LoginViewModel loginViewModel = new LoginViewModel(this);
@@ -33,6 +46,34 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        binding.btnFacebook.setOnClickListener(v -> LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile")));
+    }
 
+    private void loginFacebook() {
+        callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(LoginActivity.this, "Cancel Login", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Toast.makeText(LoginActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

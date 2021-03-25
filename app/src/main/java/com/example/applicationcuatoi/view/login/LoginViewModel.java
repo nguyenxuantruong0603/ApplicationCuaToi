@@ -11,6 +11,7 @@ import com.example.applicationcuatoi.datamodel.user.User;
 import com.example.applicationcuatoi.view.home.HomeActivity;
 import com.example.applicationcuatoi.view.signup.SignUpActivity;
 
+
 public class LoginViewModel extends ViewModel {
 
     private Context context;
@@ -49,4 +50,6 @@ public class LoginViewModel extends ViewModel {
         Intent intent = new Intent(context, SignUpActivity.class);
         context.startActivity(intent);
     }
+
+
 }

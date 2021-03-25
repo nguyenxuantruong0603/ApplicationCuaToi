@@ -1,8 +1,13 @@
 package com.example.applicationcuatoi.view.detailmovie;
 
 import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +25,7 @@ public class DetailMovieActivity extends AppCompatActivity {
     private Integer votecount;
     private double voteaverage;
     private ActivityDetailMovieBinding binding;
+    private boolean isCheckSound = false;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -27,15 +33,29 @@ public class DetailMovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
 
+        final MediaPlayer player = MediaPlayer.create(this, R.raw.pho_khong_mua);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_movie);
 
-        binding.imgPlay.setOnClickListener(v -> Toast.makeText(DetailMovieActivity.this, "Playing", Toast.LENGTH_SHORT).show());
+        binding.cardView.setOnClickListener(v -> {
+            if (isCheckSound == false) {
+                player.start();
+                isCheckSound = true;
+            } else {
+                player.pause();
+                isCheckSound = false;
+
+            }
+        });
 
         binding.btnBuyCart.setOnClickListener(v -> Toast.makeText(DetailMovieActivity.this, "Buy Successfully", Toast.LENGTH_SHORT).show());
 
         initView();
         progressbarShowVote();
+        setupToolbar();
+
     }
+
 
     @SuppressLint("SetTextI18n")
     private void initView() {
@@ -52,9 +72,19 @@ public class DetailMovieActivity extends AppCompatActivity {
         binding.tvDetailOverView.setText(overview);
         binding.tvDetailDate.setText(date);
         binding.tvDetailVote.setText(votecount + "");
+        binding.tvOverView2.setText(overview);
+
         Picasso.with(this).load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imgDetailAvatar);
+        Picasso.with(this).load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imageView);
+        Picasso.with(this).load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imageView2);
 
     }
+
+    private void setupToolbar() {
+        binding.toolbarDetail.setNavigationIcon(R.drawable.ic_arrow_back);
+        binding.toolbarDetail.setNavigationOnClickListener(v -> finish());
+    }
+
 
     @SuppressLint("SetTextI18n")
     private void progressbarShowVote() {

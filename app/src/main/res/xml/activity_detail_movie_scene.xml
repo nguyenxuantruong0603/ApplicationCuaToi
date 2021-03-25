@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+  >
+
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint
+            android:id="@+id/tvDetailTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvDetailDate"
+            app:layout_constraintStart_toStartOf="parent"
+            android:rotationX="-8" />
+        <Constraint
+            android:id="@+id/tvDetailTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvDetailDate"
+            app:layout_constraintStart_toStartOf="parent"
+            android:rotationX="1" />
+        <Constraint
+            android:id="@+id/tvDetailDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:transitionEasing="cubic(0.2,0.2,0.54,0.47)" />
+        <Constraint
+            android:id="@+id/tvOverView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            android:layout_width="57dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="51dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            android:visibility="gone" />
+        <Constraint
+            android:id="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintHorizontal_bias="0.051"
+            android:visibility="gone" />
+        <Constraint
+            android:id="@+id/imageView2"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+
+        <Constraint
+            android:id="@+id/imageView2"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:transitionEasing="cubic(0.2,0.2,0.5,0.51)"
+            app:pathMotionArc="flip"
+            android:visibility="visible"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/tvOverView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            android:layout_width="57dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="51dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:transitionEasing="decelerate"
+            app:pathMotionArc="startVertical"
+            android:visibility="visible" />
+        <Constraint
+            android:id="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintHorizontal_bias="0.051"
+            android:visibility="visible" />
+
+    </ConstraintSet>
+
+    <Transition
+        app:duration="3000"
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        app:autoTransition="animateToStart"
+        app:pathMotionArc="startVertical"
+        app:motionInterpolator="easeOut">
+
+        <OnSwipe app:touchAnchorSide="bottom" />
+    </Transition>
+</MotionScene>

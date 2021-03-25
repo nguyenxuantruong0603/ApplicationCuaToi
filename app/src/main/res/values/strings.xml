@@ -3,4 +3,7 @@
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Top Popular</string>
     <string name="title_notifications">Information</string>
+
+    <string name="facebook_app_id">287335279457042</string> <string name="fb_login_protocol_scheme">fb287335279457042</string>
+
 </resources>

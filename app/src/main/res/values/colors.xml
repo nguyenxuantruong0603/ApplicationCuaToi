@@ -4,6 +4,7 @@
     <color name="color_default">#40DE33</color>
     <color name="white">#FFFFFFFF</color>
     <color name="opacity">#66A4A1A1</color>
-    <color name="opacity100">#FFA4A1A1</color>
+    <color name="opacity100">#0DA4A1A1</color>
+    <color name="com_facebook_button_background_color_focused_disabled">#3691E6</color>
 
 </resources>
