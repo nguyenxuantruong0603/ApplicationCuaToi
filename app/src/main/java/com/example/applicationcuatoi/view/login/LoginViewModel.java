@@ -11,7 +11,6 @@ import com.example.applicationcuatoi.datamodel.user.User;
 import com.example.applicationcuatoi.view.home.HomeActivity;
 import com.example.applicationcuatoi.view.signup.SignUpActivity;
 
-
 public class LoginViewModel extends ViewModel {
 
     private Context context;

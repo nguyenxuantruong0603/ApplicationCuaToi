@@ -2,15 +2,9 @@ package com.example.applicationcuatoi.view.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-import android.widget.Toast;
-
 import com.example.applicationcuatoi.R;
 import com.example.applicationcuatoi.databinding.ActivitySignUpBinding;
-import com.example.applicationcuatoi.datamodel.user.User;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -30,6 +24,9 @@ public class SignUpActivity extends AppCompatActivity {
         signUpViewModel.getUserMutableLiveData().observe(this, user -> {
 
         });
+
+        binding.toolbarSignUp.setNavigationIcon(R.drawable.ic_arrow_back);
+        binding.toolbarSignUp.setNavigationOnClickListener(v -> finish());
 
     }
 }

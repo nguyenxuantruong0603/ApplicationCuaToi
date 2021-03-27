@@ -2,14 +2,11 @@ package com.example.applicationcuatoi.view.signup;
 
 import android.content.Context;
 import android.widget.Toast;
-
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.applicationcuatoi.BR;
 import com.example.applicationcuatoi.datamodel.user.User;
+
+
 
 public class SignUpViewModel extends ViewModel {
 
@@ -46,8 +43,10 @@ public class SignUpViewModel extends ViewModel {
             errorEmail.setValue(null);
             errorPassword.setValue(null);
             Toast.makeText(context, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+
         }
 
     }
+
 
 }

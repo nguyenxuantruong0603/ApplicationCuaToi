@@ -19,6 +19,8 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
+
+
 import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        loginFacebook();
+        loginFacebookSDK();
 
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         LoginViewModel loginViewModel = new LoginViewModel(this);
@@ -37,19 +39,14 @@ public class LoginActivity extends AppCompatActivity {
 
         // lắng nghe sự thay đổi dữ liệu của User
         loginViewModel.getUserMutableLiveData().observe(this, user -> {
-            if (user != null) {
-            } else {
-                user = new User.UserBuilder()
-                        .setEmail("admin")
-                        .setpassword("123")
-                        .createUser();
-            }
+
         });
 
         binding.btnFacebook.setOnClickListener(v -> LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile")));
+
     }
 
-    private void loginFacebook() {
+ private void loginFacebookSDK() {
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -71,9 +68,13 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+
+
     }
+
 }

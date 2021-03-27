@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "907046791906",
+    "firebase_url": "https://duantotnghiep-37ef2.firebaseio.com",
+    "project_id": "duantotnghiep-37ef2",
+    "storage_bucket": "duantotnghiep-37ef2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907046791906:android:5d37e0ff8adc11cbc7ccbb",
+        "android_client_info": {
+          "package_name": "com.example.applicationcuatoi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907046791906-ksg6pn63kp2v957gpketh9m0o74u1pqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd1Y34NDCwQzvaIx0Qou7n8BVihx7kn04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907046791906-ksg6pn63kp2v957gpketh9m0o74u1pqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

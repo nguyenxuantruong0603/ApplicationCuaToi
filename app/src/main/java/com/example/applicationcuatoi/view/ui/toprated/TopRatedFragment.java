@@ -25,7 +25,8 @@ public class TopRatedFragment extends Fragment {
     @SuppressLint("FragmentLiveDataObserve")
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_top_rated, container, false);
         RecyclerView rcTopRated = view.findViewById(R.id.rcTopRated);
 
