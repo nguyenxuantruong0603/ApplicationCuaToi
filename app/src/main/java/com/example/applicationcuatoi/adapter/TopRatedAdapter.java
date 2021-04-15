@@ -26,6 +26,7 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.Holder
     private List<TheMovie> theMovieList;
     private Context context;
     private ItemFavoriteMovieBinding binding;
+
     public TopRatedAdapter(List<TheMovie> theMovieList, Context context) {
         this.theMovieList = theMovieList;
         this.context = context;
