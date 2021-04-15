@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.applicationcuatoi.R;
 import com.example.applicationcuatoi.adapter.PopularAdapter;
 import com.example.applicationcuatoi.adapter.TopRatedAdapter;
+import com.example.applicationcuatoi.databinding.FragmentTopRatedBinding;
 
 
 public class TopRatedFragment extends Fragment {
@@ -27,9 +29,8 @@ public class TopRatedFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_top_rated, container, false);
-        RecyclerView rcTopRated = view.findViewById(R.id.rcTopRated);
-
+        FragmentTopRatedBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_top_rated, container, false);
+        View view = binding.getRoot();
 
         topRatedViewModel = new ViewModelProvider(this).get(TopRatedViewModel.class);
 
@@ -37,7 +38,7 @@ public class TopRatedFragment extends Fragment {
 
         topRatedViewModel.getListMutableLiveData().observe(this, theMovies -> {
             topRatedAdapter = new TopRatedAdapter(theMovies, getContext());
-            rcTopRated.setAdapter(topRatedAdapter);
+            binding.rcTopRated.setAdapter(topRatedAdapter);
         });
         return view;
 
