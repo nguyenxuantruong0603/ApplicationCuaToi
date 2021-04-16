@@ -26,15 +26,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
-    CallbackManager callbackManager;
-
+    private CallbackManager callbackManager;
+    private LoginViewModel loginViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        LoginViewModel loginViewModel = new LoginViewModel(this);
+        loginViewModel = new LoginViewModel(this);
 
         binding.setUser(loginViewModel);
 
@@ -50,6 +50,12 @@ public class LoginActivity extends AppCompatActivity {
 
         loginFacebookSDK();
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loginViewModel.getListUser();
     }
 
     private void loginFacebookSDK() {

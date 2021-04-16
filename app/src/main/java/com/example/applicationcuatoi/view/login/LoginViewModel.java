@@ -85,7 +85,7 @@ public class LoginViewModel extends ViewModel {
 
         for (int i = 0; i < userList.size(); i++) {
             if (email.equals(userMutableLiveData.getValue().get(i).getEmail()) && pass.equals(userMutableLiveData.getValue().get(i).getPassword())) {
-                Toast.makeText(context, "Xin Chào " + userMutableLiveData.getValue().get(i).getEmail() + "!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Hello " + userMutableLiveData.getValue().get(i).getEmail() + "!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, HomeActivity.class);
                 context.startActivity(intent);
                 break;
@@ -101,7 +101,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void clickForgotPassword() {
-        Toast.makeText(context, "ngu thì chết bấm bấm caiconcac !", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Forgot password !", Toast.LENGTH_SHORT).show();
     }
 
     public void onClickSignUp() {

@@ -54,7 +54,7 @@ public class SignUpViewModel extends ViewModel {
             email.setValue("");
             password.setValue("");
             myRef.push().setValue(user);
-            Toast.makeText(context, "SignUp Success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Sign Up Success", Toast.LENGTH_SHORT).show();
         } else {
             errorEmail.setValue("Enter a valid email address");
             errorPassword.setValue("Password Length should be greater than 6");
