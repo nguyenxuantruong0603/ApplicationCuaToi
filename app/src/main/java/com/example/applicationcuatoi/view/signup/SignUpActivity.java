@@ -8,15 +8,13 @@ import com.example.applicationcuatoi.databinding.ActivitySignUpBinding;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private SignUpViewModel signUpViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ActivitySignUpBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up);
 
-        signUpViewModel = new SignUpViewModel(this);
+        SignUpViewModel signUpViewModel = new SignUpViewModel(this);
 
         binding.setSignUpViewModel(signUpViewModel);
         binding.setLifecycleOwner(this);

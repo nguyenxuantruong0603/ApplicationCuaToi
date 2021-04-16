@@ -1,11 +1,9 @@
 package com.example.applicationcuatoi.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -21,7 +19,8 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
 
     private List<User> userList;
     private Context context;
-    private  ItemUserBinding binding;
+    private ItemUserBinding binding;
+
     public InformationAdapter(List<User> userList, Context context) {
         this.userList = userList;
         this.context = context;
@@ -30,7 +29,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_user, parent, false);
+        binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_user, parent, false);
 
         View view = binding.getRoot();
         return new Holder(view);

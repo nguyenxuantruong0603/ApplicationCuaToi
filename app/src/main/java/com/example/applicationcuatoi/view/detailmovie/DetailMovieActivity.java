@@ -74,9 +74,9 @@ public class DetailMovieActivity extends AppCompatActivity {
         binding.tvDetailVote.setText(votecount + "");
         binding.tvOverView2.setText(overview);
 
-        Picasso.with(this).load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imgDetailAvatar);
-        Picasso.with(this).load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imageView);
-        Picasso.with(this).load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imageView2);
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imgDetailAvatar);
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imageView);
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + avatar).into(binding.imageView2);
 
     }
 

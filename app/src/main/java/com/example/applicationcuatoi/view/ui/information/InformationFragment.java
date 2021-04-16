@@ -22,12 +22,9 @@ import com.example.applicationcuatoi.datamodel.user.User;
 
 import java.util.List;
 
-
 public class InformationFragment extends Fragment {
 
-    private InformationViewModel informationViewModel;
     private InformationAdapter informationAdapter;
-    int i=0;
 
     @SuppressLint("FragmentLiveDataObserve")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -35,7 +32,10 @@ public class InformationFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_information, container, false);
         RecyclerView rcInformation = root.findViewById(R.id.rcInformation);
 
-        informationViewModel = new ViewModelProvider(this).get(InformationViewModel.class);
+        InformationViewModel informationViewModel = new ViewModelProvider(this).get(InformationViewModel.class);
+
+        informationViewModel.getListUser();
+
         informationViewModel.getUserMutableLiveData().observe(this, users -> {
 
             informationAdapter = new InformationAdapter(users, getContext());

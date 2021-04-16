@@ -62,7 +62,7 @@ public class ActionBottomDialogFragment extends BottomSheetDialogFragment {
         tvVoteAverage = view.findViewById(R.id.tvVoteAverage);
         imgHeart = view.findViewById(R.id.imgHeart);
 
-        Picasso.with(view.getContext()).load("https://image.tmdb.org/t/p/w500" + themovie.getPosterPath()).into(new Target() {
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + themovie.getPosterPath()).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 bottomSheet.setBackground(new BitmapDrawable(bitmap));
@@ -70,7 +70,7 @@ public class ActionBottomDialogFragment extends BottomSheetDialogFragment {
             }
 
             @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
 
             }
 

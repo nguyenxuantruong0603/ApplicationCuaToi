@@ -45,7 +45,7 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.Holder
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         TheMovie theMovie = theMovieList.get(position);
         binding.tvTitle.setText(theMovie.getTitle());
-        Picasso.with(context).load("https://image.tmdb.org/t/p/w500" + theMovie.getBackdropPath()).into(binding.imgAvatar);
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + theMovie.getBackdropPath()).into(binding.imgAvatar);
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailMovieActivity.class);
             intent.putExtra("TITLE", theMovie.getTitle());

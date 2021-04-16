@@ -25,6 +25,9 @@ public class User {
         this.password = password;
     }
 
+    public User() {
+    }
+
     public String getEmail() {
         if (email == null) {
             return "";
@@ -104,12 +107,24 @@ public class User {
         }
     }
 
-    public boolean isEmailValid() {
-        return Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches();
-    }
+//    public boolean isEmailValid() {
+//        return Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches();
+//    }
+//
+//    public boolean isPasswordValid() {
+//        return getPassword().length() > 6;
+//    }
 
-    public boolean isPasswordValid() {
-        return getPassword().length() > 6;
-    }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", sex='" + sex + '\'' +
+                '}';
+    }
 }
