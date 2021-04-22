@@ -68,6 +68,7 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         convert = String.valueOf(voteaverage).replace(".", "");
 
+
         binding.tvDetailTitle.setText(title);
         binding.tvDetailOverView.setText(overview);
         binding.tvDetailDate.setText(date);
@@ -91,10 +92,11 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         if (convert != null) {
             new Thread(() -> {
-                while (pStatus <= Integer.parseInt(convert)) {
+                while (pStatus <= (Integer.parseInt(convert))) {
                     handler.post(() -> {
                         binding.progressBar.setProgress(pStatus);
                         binding.txtProgress.setText(voteaverage + "");
+                        Log.e("status", pStatus + "");
                     });
                     try {
                         Thread.sleep(50);
