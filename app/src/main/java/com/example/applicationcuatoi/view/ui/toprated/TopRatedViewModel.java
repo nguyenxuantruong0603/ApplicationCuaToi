@@ -10,7 +10,10 @@ import com.example.applicationcuatoi.apicalling.TopRatedApiService;
 import com.example.applicationcuatoi.datamodel.movie.ResultTheMovie;
 import com.example.applicationcuatoi.datamodel.movie.TheMovie;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,7 +25,7 @@ public class TopRatedViewModel extends ViewModel {
 
     public MutableLiveData<List<TheMovie>> getListMutableLiveData() {
         if (listMutableLiveData == null) {
-            listMutableLiveData = new MutableLiveData<List<TheMovie>>();
+            listMutableLiveData = new MutableLiveData<>();
         }
         return listMutableLiveData;
     }
@@ -32,13 +35,13 @@ public class TopRatedViewModel extends ViewModel {
         Call<ResultTheMovie> call = apiService.getResult();
         call.enqueue(new Callback<ResultTheMovie>() {
             @Override
-            public void onResponse(Call<ResultTheMovie> call, Response<ResultTheMovie> response) {
-                listMutableLiveData.postValue(response.body().getTheMovies());
+            public void onResponse(@NotNull Call<ResultTheMovie> call, @NotNull Response<ResultTheMovie> response) {
+                listMutableLiveData.postValue(Objects.requireNonNull(response.body()).getTheMovies());
                 Log.e("DATA", "Size: " + response.body().getTheMovies().size());
             }
 
             @Override
-            public void onFailure(Call<ResultTheMovie> call, Throwable t) {
+            public void onFailure(@NotNull Call<ResultTheMovie> call, @NotNull Throwable t) {
                 Log.e("FAIL", t.getMessage());
             }
         });

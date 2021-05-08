@@ -7,7 +7,7 @@ public class User {
     private String password;
     private int age;
     private String address;
-    private int phoneNumber;
+    private String phoneNumber;
     private String sex;
 
     //Class DataModel User Design according Builder Pattern
@@ -53,7 +53,7 @@ public class User {
         return address;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -69,7 +69,7 @@ public class User {
         private String password;
         private int age;
         private String address;
-        private int phoneNumber;
+        private String phoneNumber;
         private String sex;
 
         public UserBuilder setEmail(final String email) {
@@ -92,7 +92,7 @@ public class User {
             return this;
         }
 
-        public UserBuilder setPhoneNumber(final int phoneNumber) {
+        public UserBuilder setPhoneNumber(final String phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }

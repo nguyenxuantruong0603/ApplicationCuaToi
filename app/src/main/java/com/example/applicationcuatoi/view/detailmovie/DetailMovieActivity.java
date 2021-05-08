@@ -2,12 +2,11 @@ package com.example.applicationcuatoi.view.detailmovie;
 
 import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
+
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,8 +20,7 @@ public class DetailMovieActivity extends AppCompatActivity {
 
     private int pStatus = 0;
     private final Handler handler = new Handler();
-    private String title, overview, date, convert, avatar;
-    private Integer votecount;
+    private String convert;
     private double voteaverage;
     private ActivityDetailMovieBinding binding;
     private boolean isCheckSound = false;
@@ -38,7 +36,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_movie);
 
         binding.cardView.setOnClickListener(v -> {
-            if (isCheckSound == false) {
+            if (!isCheckSound) {
                 player.start();
                 isCheckSound = true;
             } else {
@@ -59,12 +57,12 @@ public class DetailMovieActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void initView() {
-        title = getIntent().getStringExtra("TITLE");
-        overview = getIntent().getStringExtra("OVERVIEW");
-        date = getIntent().getStringExtra("DATE");
-        votecount = getIntent().getIntExtra("VOTECOUNT", 0);
+        String title = getIntent().getStringExtra("TITLE");
+        String overview = getIntent().getStringExtra("OVERVIEW");
+        String date = getIntent().getStringExtra("DATE");
+        Integer votecount = getIntent().getIntExtra("VOTECOUNT", 0);
         voteaverage = getIntent().getDoubleExtra("VOTEAVERAGE", 0.0);
-        avatar = getIntent().getStringExtra("AVATAR");
+        String avatar = getIntent().getStringExtra("AVATAR");
 
         convert = String.valueOf(voteaverage).replace(".", "");
 

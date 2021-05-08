@@ -21,7 +21,6 @@ import com.example.applicationcuatoi.databinding.FragmentTopRatedBinding;
 
 public class TopRatedFragment extends Fragment {
 
-    private TopRatedViewModel topRatedViewModel;
     private TopRatedAdapter topRatedAdapter;
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -32,7 +31,7 @@ public class TopRatedFragment extends Fragment {
         FragmentTopRatedBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_top_rated, container, false);
         View view = binding.getRoot();
 
-        topRatedViewModel = new ViewModelProvider(this).get(TopRatedViewModel.class);
+        TopRatedViewModel topRatedViewModel = new ViewModelProvider(this).get(TopRatedViewModel.class);
 
         topRatedViewModel.getTopRatedApi();
 

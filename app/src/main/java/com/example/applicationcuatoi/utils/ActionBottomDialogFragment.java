@@ -1,5 +1,6 @@
 package com.example.applicationcuatoi.utils;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -8,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +39,7 @@ public class ActionBottomDialogFragment extends BottomSheetDialogFragment {
         return inflater.inflate(R.layout.bottom_sheet, container, false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -88,7 +88,7 @@ public class ActionBottomDialogFragment extends BottomSheetDialogFragment {
 
         imgHeart.setOnClickListener(v -> {
 
-            if (Heart == true) {
+            if (Heart) {
                 imgHeart.setBackgroundResource(R.drawable.heart_color);
                 Heart = false;
             } else {

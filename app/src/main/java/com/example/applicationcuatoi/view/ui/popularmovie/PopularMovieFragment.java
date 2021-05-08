@@ -20,7 +20,6 @@ import com.example.applicationcuatoi.databinding.FragmentFavoriteMovieBinding;
 
 public class PopularMovieFragment extends Fragment {
 
-    private PopularMovieViewModel popularMovieViewModel;
     private PopularAdapter popularAdapter;
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -30,7 +29,7 @@ public class PopularMovieFragment extends Fragment {
 
         View view = binding.getRoot();
 
-        popularMovieViewModel = new ViewModelProvider(this).get(PopularMovieViewModel.class);
+        PopularMovieViewModel popularMovieViewModel = new ViewModelProvider(this).get(PopularMovieViewModel.class);
 
         popularMovieViewModel.getListMutableLiveData().observe(this, theMovies -> {
 

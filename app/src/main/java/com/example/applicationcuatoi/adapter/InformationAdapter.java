@@ -1,9 +1,11 @@
 package com.example.applicationcuatoi.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -32,17 +34,36 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_user, parent, false);
 
         View view = binding.getRoot();
+
+
         return new Holder(view);
+    }
+
+    public List<User> getUserList() {
+            return userList;
+    }
+
+    public void removeItem(int position) {
+
+    }
+
+    public void restoreItem() {
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         User user = userList.get(position);
-        binding.tvAdress.setText(user.getAddress());
-        binding.tvAge.setText(String.valueOf(user.getAge()));
-        binding.tvEmail.setText(user.getEmail());
-        binding.tvPhoneNumber.setText(String.valueOf(user.getPhoneNumber()));
-        binding.tvSex.setText(user.getSex());
+        binding.tvAdress.setText("Địa Chỉ: " + user.getAddress());
+        binding.tvAge.setText("Tuổi: " + user.getAge());
+        binding.tvEmail.setText("Email: " + user.getEmail());
+        binding.tvPhoneNumber.setText("Số Điện Thoại:" + user.getPhoneNumber());
+        binding.tvSex.setText("Giới Tính: " + user.getSex());
+        if (user.getSex().equals("Nam")) {
+            binding.layoutLine.setBackgroundResource(R.drawable.background_layout_male);
+        } else {
+            binding.layoutLine.setBackgroundResource(R.drawable.background_layout_female);
+        }
     }
 
     @Override

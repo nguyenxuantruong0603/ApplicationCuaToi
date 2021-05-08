@@ -2,12 +2,10 @@ package com.example.applicationcuatoi.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -23,8 +21,8 @@ import java.util.List;
 
 public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.Holder> {
 
-    private List<TheMovie> theMovieList;
-    private Context context;
+    private final List<TheMovie> theMovieList;
+    private final Context context;
     private ItemFavoriteMovieBinding binding;
 
     public TopRatedAdapter(List<TheMovie> theMovieList, Context context) {
@@ -66,7 +64,7 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.Holder
         return 0;
     }
 
-    public class Holder extends RecyclerView.ViewHolder {
+    public static class Holder extends RecyclerView.ViewHolder {
 
         public Holder(@NonNull View itemView) {
             super(itemView);

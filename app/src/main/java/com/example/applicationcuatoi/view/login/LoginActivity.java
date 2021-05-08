@@ -23,6 +23,7 @@ import com.facebook.login.LoginResult;
 
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
@@ -45,8 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.e("data_changed", users.size()+"");
         });
 
-
-        binding.btnFacebook.setOnClickListener(v -> LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile")));
+        binding.btnFacebook.setOnClickListener(v -> LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Collections.singletonList("public_profile")));
 
         loginFacebookSDK();
 

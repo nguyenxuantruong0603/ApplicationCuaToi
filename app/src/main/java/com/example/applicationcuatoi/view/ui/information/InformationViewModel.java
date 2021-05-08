@@ -16,8 +16,8 @@ import java.util.List;
 
 public class InformationViewModel extends ViewModel {
 
+    private final List<User> userList = new ArrayList<>();
     private MutableLiveData<List<User>> userMutableLiveData;
-    private List<User> userList = new ArrayList<>();
 
     public MutableLiveData<List<User>> getUserMutableLiveData() {
         if (userMutableLiveData == null) {
@@ -25,6 +25,7 @@ public class InformationViewModel extends ViewModel {
         }
         return userMutableLiveData;
     }
+
     public void getListUser() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("user");
@@ -34,21 +35,23 @@ public class InformationViewModel extends ViewModel {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
 
-                    String email = user.getEmail();
-                    String password = user.getPassword();
-                    String address = user.getAddress();
-                    int phone_number = user.getPhoneNumber();
-                    String sex = user.getSex();
-                    int age = user.getAge();
+                    if (user != null) {
+                        String email = user.getEmail();
+                        String password = user.getPassword();
+                        String address = user.getAddress();
+                        String phone_number = user.getPhoneNumber();
+                        String sex = user.getSex();
+                        int age = user.getAge();
 
-                    userList.add(new User.UserBuilder()
-                            .setEmail(email)
-                            .setpassword(password)
-                            .setAdress(address)
-                            .setPhoneNumber(phone_number)
-                            .setSex(sex)
-                            .setAge(age)
-                            .createUser());
+                        userList.add(new User.UserBuilder()
+                                .setEmail(email)
+                                .setpassword(password)
+                                .setAdress(address)
+                                .setPhoneNumber(phone_number)
+                                .setSex(sex)
+                                .setAge(age)
+                                .createUser());
+                    }
 
                 }
 

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +20,8 @@ import java.util.List;
 
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Holder> {
 
-    private List<TheMovie> theMovieList;
-    private Context context;
+    private final List<TheMovie> theMovieList;
+    private final Context context;
     private  ItemFavoriteMovieBinding binding;
     public PopularAdapter(List<TheMovie> theMovieList, Context context) {
         this.theMovieList = theMovieList;
@@ -59,7 +57,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Holder> 
         return 0;
     }
 
-    public class Holder extends RecyclerView.ViewHolder {
+    public static class Holder extends RecyclerView.ViewHolder {
 
         public Holder(@NonNull View itemView) {
             super(itemView);
