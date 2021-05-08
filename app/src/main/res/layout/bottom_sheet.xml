@@ -71,7 +71,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="200dp"
         android:layout_marginBottom="2dp"
-        android:background="@color/opacity"
+        android:background="@drawable/background_view_bottom_sheet"
         android:fontFamily="@font/numans"
         android:padding="8dp"
         android:text="Long ago, in the fantasy world of Kumandra, humans and dragons lived together in harmony.  But when an evil force threatened the land, the dragons sacrificed themselves to save humanity. Now, 500 years later, that same evil has returned and it’s up to a lone warrior, Raya, to track down the legendary last dragon to restore the fractured land and its divided people."
@@ -88,10 +88,10 @@
         android:id="@+id/layout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/opacity"
+        android:background="@drawable/background_view_bottom_sheet"
         android:orientation="horizontal"
         android:padding="8dp"
-        android:weightSum="4"
+        android:weightSum="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -99,7 +99,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:orientation="vertical">
 
             <TextView
@@ -127,7 +127,6 @@
             android:id="@+id/imgHeart"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_weight="1"
             android:background="@drawable/heart"
           />
     </LinearLayout>
