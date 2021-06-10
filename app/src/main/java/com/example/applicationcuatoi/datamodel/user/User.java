@@ -64,6 +64,26 @@ public class User {
         return sex;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", sex='" + sex + '\'' +
+                '}';
+    }
+
+//    public boolean isEmailValid() {
+//        return Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches();
+//    }
+//
+//    public boolean isPasswordValid() {
+//        return getPassword().length() > 6;
+//    }
+
     public static class UserBuilder {
         private String email;
         private String password;
@@ -105,26 +125,5 @@ public class User {
         public User createUser() {
             return new User(this);
         }
-    }
-
-//    public boolean isEmailValid() {
-//        return Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches();
-//    }
-//
-//    public boolean isPasswordValid() {
-//        return getPassword().length() > 6;
-//    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
-                ", address='" + address + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", sex='" + sex + '\'' +
-                '}';
     }
 }

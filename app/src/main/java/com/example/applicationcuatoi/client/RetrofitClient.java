@@ -1,9 +1,9 @@
-package com.example.applicationcuatoi.apicalling;
+package com.example.applicationcuatoi.client;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitCallMovie {
+public class RetrofitClient {
     private static final String URL = "https://api.themoviedb.org";
     public static Retrofit retrofit;
 

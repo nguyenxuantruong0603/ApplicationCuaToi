@@ -89,25 +89,21 @@ public class LoginViewModel extends ViewModel {
         String email = username.getValue();
         String pass = password.getValue();
 
-        AlertDialog builder = new AlertDialog.Builder(context).create();
-        builder.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        builder.setView(LayoutInflater.from(context).inflate(R.layout.dialog_await_api_feedback, null));
-        builder.show();
 
         for (int i = 0; i < userList.size(); i++) {
-            if (Objects.requireNonNull(email).equals(Objects.requireNonNull(userMutableLiveData.getValue()).get(i).getEmail()) && Objects.requireNonNull(pass).equals(userMutableLiveData.getValue().get(i).getPassword())) {
-                builder.dismiss();
+            if (email == null || pass == null) {
+
+                Toast.makeText(context, "Email or Password is not Empty", Toast.LENGTH_SHORT).show();
+                break;
+            } else if (Objects.requireNonNull(email).equals(Objects.requireNonNull(userMutableLiveData.getValue()).get(i).getEmail()) && Objects.requireNonNull(pass).equals(userMutableLiveData.getValue().get(i).getPassword())) {
+
                 Toast.makeText(context, "Hello " + userMutableLiveData.getValue().get(i).getEmail() + "!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, HomeActivity.class);
                 context.startActivity(intent);
                 break;
-            } else if (email.equals("") || Objects.requireNonNull(pass).equals("")) {
-                builder.dismiss();
-                Toast.makeText(context, "Email or Password is not Empty", Toast.LENGTH_SHORT).show();
-                break;
             } else {
                 if (i == userList.size() - 1) {
-                    builder.dismiss();
+
                     Toast.makeText(context, "Email or Password is incorrect. Please check again", Toast.LENGTH_SHORT).show();
                 }
             }

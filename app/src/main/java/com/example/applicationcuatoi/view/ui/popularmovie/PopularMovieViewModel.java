@@ -5,8 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.applicationcuatoi.apicalling.PopularApiService;
-import com.example.applicationcuatoi.apicalling.RetrofitCallMovie;
+import com.example.applicationcuatoi.client.PopularApiService;
+import com.example.applicationcuatoi.client.RetrofitClient;
 import com.example.applicationcuatoi.datamodel.movie.ResultTheMovie;
 import com.example.applicationcuatoi.datamodel.movie.TheMovie;
 
@@ -36,15 +36,19 @@ public class PopularMovieViewModel extends ViewModel {
     }
 
     public void getTheMovieApi() {
-        PopularApiService callMovie = RetrofitCallMovie.getInstance().create(PopularApiService.class);
+        PopularApiService callMovie = RetrofitClient.getInstance().create(PopularApiService.class);
         Call<ResultTheMovie> call = callMovie.getResult();
         call.enqueue(new Callback<ResultTheMovie>() {
             @Override
             public void onResponse(@NotNull Call<ResultTheMovie> call, @NotNull Response<ResultTheMovie> response) {
-                if (response.code() == 200) {
+                if (response.isSuccessful()) {
                     listMutableLiveData.postValue(Objects.requireNonNull(response.body()).getTheMovies());
                     Log.e("TheMovie", response.body().getTheMovies().toString());
                     Log.e("SIZE: ", response.body().getTheMovies().size() + "");
+                } else if (response.code() == 404) {
+                    Log.e("404", "Sai đường dẫn");
+                } else {
+                    Log.e("CODE", response.code() + "");
                 }
             }
 
@@ -54,7 +58,6 @@ public class PopularMovieViewModel extends ViewModel {
 
             }
         });
-
 
     }
 

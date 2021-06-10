@@ -1,4 +1,4 @@
-package com.example.applicationcuatoi.apicalling;
+package com.example.applicationcuatoi.client;
 
 import com.example.applicationcuatoi.datamodel.movie.ResultTheMovie;
 

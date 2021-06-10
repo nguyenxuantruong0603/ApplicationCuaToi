@@ -1,5 +1,6 @@
 package com.example.applicationcuatoi.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
 
     private List<User> userList;
     private Context context;
-    private ItemUserBinding binding;
+
 
     public InformationAdapter(List<User> userList, Context context) {
         this.userList = userList;
@@ -31,16 +32,12 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_user, parent, false);
-
-        View view = binding.getRoot();
-
-
-        return new Holder(view);
+        ItemUserBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_user, parent, false);
+        return new Holder(binding);
     }
 
     public List<User> getUserList() {
-            return userList;
+        return userList;
     }
 
     public void removeItem(int position) {
@@ -51,18 +48,19 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         User user = userList.get(position);
-        binding.tvAdress.setText("Địa Chỉ: " + user.getAddress());
-        binding.tvAge.setText("Tuổi: " + user.getAge());
-        binding.tvEmail.setText("Email: " + user.getEmail());
-        binding.tvPhoneNumber.setText("Số Điện Thoại:" + user.getPhoneNumber());
-        binding.tvSex.setText("Giới Tính: " + user.getSex());
+        holder.binding.tvAdress.setText("Địa Chỉ: " + user.getAddress());
+        holder.binding.tvAge.setText("Tuổi: " + user.getAge());
+        holder.binding.tvEmail.setText("Email: " + user.getEmail());
+        holder.binding.tvPhoneNumber.setText("Số Điện Thoại:" + user.getPhoneNumber());
+        holder.binding.tvSex.setText("Giới Tính: " + user.getSex());
         if (user.getSex().equals("Nam")) {
-            binding.layoutLine.setBackgroundResource(R.drawable.background_layout_male);
+            holder.binding.layoutLine.setBackgroundResource(R.drawable.background_layout_male);
         } else {
-            binding.layoutLine.setBackgroundResource(R.drawable.background_layout_female);
+            holder.binding.layoutLine.setBackgroundResource(R.drawable.background_layout_female);
         }
     }
 
@@ -75,10 +73,11 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     }
 
     public static class Holder extends RecyclerView.ViewHolder {
+        ItemUserBinding binding;
 
-        public Holder(@NonNull View itemView) {
-            super(itemView);
-
+        public Holder(ItemUserBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

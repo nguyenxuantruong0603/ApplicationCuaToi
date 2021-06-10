@@ -18,10 +18,10 @@ import com.squareup.picasso.Picasso;
 
 public class DetailMovieActivity extends AppCompatActivity {
 
-    private int pStatus = 0;
     private final Handler handler = new Handler();
-    private String convert;
-    private double voteaverage;
+    private int pStatus = 0;
+    private String voteConvert;
+    private double voteAverage;
     private ActivityDetailMovieBinding binding;
     private boolean isCheckSound = false;
 
@@ -61,10 +61,10 @@ public class DetailMovieActivity extends AppCompatActivity {
         String overview = getIntent().getStringExtra("OVERVIEW");
         String date = getIntent().getStringExtra("DATE");
         Integer votecount = getIntent().getIntExtra("VOTECOUNT", 0);
-        voteaverage = getIntent().getDoubleExtra("VOTEAVERAGE", 0.0);
+        voteAverage = getIntent().getDoubleExtra("VOTEAVERAGE", 0.0);
         String avatar = getIntent().getStringExtra("AVATAR");
 
-        convert = String.valueOf(voteaverage).replace(".", "");
+        voteConvert = String.valueOf(voteAverage).replace(".", "");
 
 
         binding.tvDetailTitle.setText(title);
@@ -88,12 +88,12 @@ public class DetailMovieActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void progressbarShowVote() {
 
-        if (convert != null) {
+        if (voteConvert != null) {
             new Thread(() -> {
-                while (pStatus <= (Integer.parseInt(convert))) {
+                while (pStatus <= (Integer.parseInt(voteConvert))) {
                     handler.post(() -> {
                         binding.progressBar.setProgress(pStatus);
-                        binding.txtProgress.setText(voteaverage + "");
+                        binding.txtProgress.setText(voteAverage + "");
                         Log.e("status", pStatus + "");
                     });
                     try {

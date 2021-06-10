@@ -2,7 +2,6 @@ package com.example.applicationcuatoi.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 
@@ -14,17 +13,13 @@ import android.widget.Toast;
 
 import com.example.applicationcuatoi.R;
 import com.example.applicationcuatoi.databinding.ActivityLoginBinding;
-import com.example.applicationcuatoi.datamodel.user.User;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
-
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
@@ -32,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         loginViewModel = new LoginViewModel(this);
@@ -50,12 +44,6 @@ public class LoginActivity extends AppCompatActivity {
 
         loginFacebookSDK();
 
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        loginViewModel.getListUser();
     }
 
     private void loginFacebookSDK() {
@@ -80,13 +68,15 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-
-
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loginViewModel.getListUser();
+    }
 }

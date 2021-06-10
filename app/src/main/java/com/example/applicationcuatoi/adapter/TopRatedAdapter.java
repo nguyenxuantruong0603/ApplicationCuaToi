@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,7 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.Holder
 
     private final List<TheMovie> theMovieList;
     private final Context context;
-    private ItemFavoriteMovieBinding binding;
+
 
     public TopRatedAdapter(List<TheMovie> theMovieList, Context context) {
         this.theMovieList = theMovieList;
@@ -34,16 +33,15 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.Holder
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_favorite_movie, parent, false);
-        View view = binding.getRoot();
-        return new Holder(view);
+        ItemFavoriteMovieBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_favorite_movie, parent, false);
+        return new Holder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         TheMovie theMovie = theMovieList.get(position);
-        binding.tvTitle.setText(theMovie.getTitle());
-        Picasso.get().load("https://image.tmdb.org/t/p/w500" + theMovie.getBackdropPath()).into(binding.imgAvatar);
+        holder.binding.tvTitle.setText(theMovie.getTitle());
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + theMovie.getBackdropPath()).into(holder.binding.imgAvatar);
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailMovieActivity.class);
             intent.putExtra("TITLE", theMovie.getTitle());
@@ -65,10 +63,11 @@ public class TopRatedAdapter extends RecyclerView.Adapter<TopRatedAdapter.Holder
     }
 
     public static class Holder extends RecyclerView.ViewHolder {
+        ItemFavoriteMovieBinding binding;
 
-        public Holder(@NonNull View itemView) {
-            super(itemView);
-
+        public Holder(ItemFavoriteMovieBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

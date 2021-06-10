@@ -1,12 +1,13 @@
 package com.example.applicationcuatoi.view.ui.toprated;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.applicationcuatoi.apicalling.RetrofitCallMovie;
-import com.example.applicationcuatoi.apicalling.TopRatedApiService;
+import com.example.applicationcuatoi.client.RetrofitClient;
+import com.example.applicationcuatoi.client.TopRatedApiService;
 import com.example.applicationcuatoi.datamodel.movie.ResultTheMovie;
 import com.example.applicationcuatoi.datamodel.movie.TheMovie;
 
@@ -31,13 +32,19 @@ public class TopRatedViewModel extends ViewModel {
     }
 
     public void getTopRatedApi() {
-        TopRatedApiService apiService = RetrofitCallMovie.getInstance().create(TopRatedApiService.class);
+        TopRatedApiService apiService = RetrofitClient.getInstance().create(TopRatedApiService.class);
         Call<ResultTheMovie> call = apiService.getResult();
         call.enqueue(new Callback<ResultTheMovie>() {
             @Override
             public void onResponse(@NotNull Call<ResultTheMovie> call, @NotNull Response<ResultTheMovie> response) {
-                listMutableLiveData.postValue(Objects.requireNonNull(response.body()).getTheMovies());
-                Log.e("DATA", "Size: " + response.body().getTheMovies().size());
+                if (response.isSuccessful()) {
+                    listMutableLiveData.postValue(Objects.requireNonNull(response.body()).getTheMovies());
+                    Log.e("DATA", "Size: " + response.body().getTheMovies().size());
+                } else if (response.code() == 404) {
+                    Log.e("404", "Sai đường dẫn");
+                } else {
+                    Log.e("CODE", response.code() + "");
+                }
             }
 
             @Override

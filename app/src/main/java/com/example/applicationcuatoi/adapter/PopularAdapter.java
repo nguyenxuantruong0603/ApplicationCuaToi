@@ -22,7 +22,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Holder> 
 
     private final List<TheMovie> theMovieList;
     private final Context context;
-    private  ItemFavoriteMovieBinding binding;
+
     public PopularAdapter(List<TheMovie> theMovieList, Context context) {
         this.theMovieList = theMovieList;
         this.context = context;
@@ -31,16 +31,15 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Holder> 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_favorite_movie, parent, false);
-        View view = binding.getRoot();
-        return new Holder(view);
+        ItemFavoriteMovieBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_favorite_movie, parent, false);
+        return new Holder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         TheMovie theMovie = theMovieList.get(position);
-        binding.tvTitle.setText(theMovie.getTitle());
-        Picasso.get().load("https://image.tmdb.org/t/p/w500" + theMovie.getBackdropPath()).into(binding.imgAvatar);
+        holder.binding.tvTitle.setText(theMovie.getTitle());
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + theMovie.getBackdropPath()).into(holder.binding.imgAvatar);
 
         holder.itemView.setOnClickListener(v -> {
             ActionBottomDialogFragment addPhotoBottomDialogFragment = ActionBottomDialogFragment.newInstance(theMovie);
@@ -58,10 +57,11 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Holder> 
     }
 
     public static class Holder extends RecyclerView.ViewHolder {
+        ItemFavoriteMovieBinding binding;
 
-        public Holder(@NonNull View itemView) {
-            super(itemView);
-
+        public Holder(ItemFavoriteMovieBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
 
